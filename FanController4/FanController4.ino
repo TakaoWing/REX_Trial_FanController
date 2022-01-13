@@ -1,14 +1,14 @@
-/*扇風機を作ろう！その3
+/*扇風機を作ろう！その4
  * 内容
  * タッチセンサを押すたびにファン（モータ）のON/OFFが切り替わる
- * モータの回転数を割合変数を使って変える
+ * 可変抵抗によって，モータの回転数を調節する
  */
 const int switchPin = 13; // タクトスイッチのピン
 const int motorPin = 9; // モータを動かすピン
+const int potPin = A0; // 可変抵抗のピン
 int switchState = 0; // タクトスイッチの状態(State) 0:オフ，1:オン
 int old_switchState = 0; // 一回前のタクトスイッチの状態
 bool isRunning = false; // モーターを動かすかどうか false:動かさない, true:動かす
-int motorSpeedRate = 10; // モータスピードの割合 0~100
 
 // Arduinoが起動した時，1度だけ実行
 void setup() {
@@ -27,7 +27,7 @@ void loop() {
     delay(10); // チャタリング用
   }
   if(isRunning){ // もし動かすなら
-    analogWrite(motorPin,map(motorSpeedRate,0,100,0,254)); // モータに電流を流す 0~100の値を0~254に変更する
+    analogWrite(motorPin,map(analogRead(potPin),0,1023,0,254)); // モータに電流を流す 可変抵抗の取得する値(0~1023)を0~254に変換する
   }
   else{ // 動かさなければ
     analogWrite(motorPin,0); // モータに電流を流さない
