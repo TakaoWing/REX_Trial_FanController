@@ -1,7 +1,7 @@
 /*扇風機を作ろう！その5
  * 内容
  * タッチセンサを押すたびにファン（モータ）のON/OFFが切り替わる
- * もう一つのタッチセンサでモータの強弱を切り替える
+ * もう一つのタッチセンサでモータの強中弱を切り替える
  */
 const int powerSwitchPin = 13; // 扇風機の電源スイッチのピン
 const int changeSpeedSwitchPin = 12; // 扇風機の強さを変更する用のピン
@@ -12,7 +12,7 @@ int changeSpeedSwitchState = 0; // 扇風機の強さを変更する用のスイ
 int old_changeSpeedSwitchState = 0; // 一回前の扇風機の強さを変更する用のスイッチの状態
 bool isRunning = false; // モーターを動かすかどうか false:動かさない, true:動かす
 int motorSpeed = 0;
-int fanMode = 1; // 0:弱, 1:強 
+int fanMode = 0; // 0:弱, 1:中, 2:強
 
 // Arduinoが起動した時，1度だけ実行
 void setup() {
@@ -35,15 +35,17 @@ void loop() {
   changeSpeedSwitchState = digitalRead(changeSpeedSwitchPin);
   if( changeSpeedSwitchState == LOW && old_changeSpeedSwitchState == HIGH){ // もし「今の状態が押している時かつ前の状態が押していない時(スイッチを押した一瞬)」なら
     fanMode++;
-    if(fanMode>1){
+    if(fanMode>2){
       fanMode = 0;
     }
   }
 
   //モータのモードによるモータスピードの設定
-  if(fanMode == 0){
-    motorSpeed = 64;
-  }else if(fanMode == 1){
+  if(fanMode == 0){ // 弱
+    motorSpeed = 60;
+  }else if(fanMode == 1){ // 中
+    motorSpeed = 120;
+  }else if(fanMode == 2){ // 強
     motorSpeed = 254;
   }
 
