@@ -3,7 +3,7 @@
  * タッチセンサを押すたびにファン（モータ）のON/OFFが切り替わる
  */
 const int switchPin = 13; // タクトスイッチのピン
-const int motorPin = 9; // モータを動かすピン
+const int motorPin = 3; // モータを動かすピン
 int switchState = 0; // タクトスイッチの状態(State) 0:オフ，1:オン
 int old_switchState = 0; // 一回前のタクトスイッチの状態
 bool isRunning = false; // モーターを動かすかどうか false:動かさない, true:動かす

@@ -4,7 +4,7 @@
  * 可変抵抗によって，モータの回転数を調節する
  */
 const int switchPin = 13; // タクトスイッチのピン
-const int motorPin = 9; // モータを動かすピン
+const int motorPin = 3; // モータを動かすピン
 const int potPin = A0; // 可変抵抗のピン
 int switchState = 0; // タクトスイッチの状態(State) 0:オフ，1:オン
 int old_switchState = 0; // 一回前のタクトスイッチの状態

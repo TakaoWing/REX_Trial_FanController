@@ -3,7 +3,7 @@
  * タッチセンサを押している間，ファン（モータ）が動くようにする
  */
 const int switchPin = 13; // タクトスイッチのピン
-const int motorPin = 9; // モータを動かすピン
+const int motorPin = 3; // モータを動かすピン
 int switchState = 0; // タクトスイッチの状態(State) 0:オフ，1:オン
 
 // Arduinoが起動した時，1度だけ実行

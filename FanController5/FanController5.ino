@@ -4,8 +4,8 @@
    もう一つのタッチセンサでモータの強中弱を切り替える
    配列を用いてプログラムを整理
 */
-const int switchPins[] = {13, 12}; // スイッチのピンの配列
-const int motorPin = 9; // モータを動かすピン
+const int switchPins[] = {13, 8}; // スイッチのピンの配列
+const int motorPin = 3; // モータを動かすピン
 int switchState = 0; // スイッチの今の状態
 int old_switchStates[] = {0, 0}; // 一回前のスイッチの状態
 bool isRunning = false; // モータを動かすかどうか false:動かさない, true:動かす
@@ -27,7 +27,8 @@ void loop() {
     if (switchState == LOW && old_switchStates[i] == HIGH) {
       if (i == 0) { // 電源用ピンの場合
         isRunning = !isRunning; // 動きを切り替える
-      } else if (i == 1) { // ファンの強さ制御ピンの場合
+      }
+      else if (i == 1) { // ファンの強さ制御ピンの場合
         fanMode++;
         if (fanMode > 2) fanMode = 0; // fanModeが3の場合，0に切り替える
       }

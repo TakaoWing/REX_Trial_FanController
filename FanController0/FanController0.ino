@@ -2,7 +2,7 @@
  * 内容
  * モーターを回転させる
  */
-const int motorPin = 9; // モータを動かすピン
+const int motorPin = 3; // モータを動かすピン
 
 // Arduinoが起動した時，1度だけ実行
 void setup() {
